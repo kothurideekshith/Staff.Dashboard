@@ -24,18 +24,8 @@ const ShiftTracker: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto py-4 px-4 font-['Golos_Text'] pb-24 bg-[#f9f9f9] min-h-screen">
-      {/* Time Filters */}
-      <TimeFilter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
-      
-      {/* Stats Cards */}
-      <div className="grid grid-cols-3 gap-3 mt-3">
-        <StatCard value="£3.99" label="Earned" />
-        <StatCard value="52:45" label="Hours Worked" />
-        <StatCard value="£56" label="Tax" />
-      </div>
-
-      {/* Welcome & Clock In */}
-      <div className="mt-4 bg-white rounded-xl p-4 shadow-sm">
+      {/* Welcome & Clock In - Moved to top */}
+      <div className="mb-4 bg-white rounded-xl p-4 shadow-sm">
         <div>
           <h2 className="font-medium text-lg">Welcome Nick</h2>
           <p className="text-sm">
@@ -58,6 +48,16 @@ const ShiftTracker: React.FC = () => {
             Clock - In
           </ActionButton>
         </div>
+      </div>
+      
+      {/* Time Filters */}
+      <TimeFilter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+      
+      {/* Stats Cards */}
+      <div className="grid grid-cols-3 gap-3 mt-3">
+        <StatCard value="£3.99" label="Earned" />
+        <StatCard value="52:45" label="Hours Worked" />
+        <StatCard value="£56" label="Tax" />
       </div>
 
       {/* Action Buttons */}
