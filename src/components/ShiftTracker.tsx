@@ -4,6 +4,7 @@ import StatCard from './StatCard';
 import ActionButton from './ActionButton';
 import ShiftTable from './ShiftTable';
 import TimeFilter from './TimeFilter';
+import BottomNavBar from './BottomNavBar';
 import { Clock, Plus, ArrowLeftRight, CalendarClock, ArrowRight, MessageSquare } from 'lucide-react';
 
 const ShiftTracker: React.FC = () => {
@@ -21,10 +22,8 @@ const ShiftTracker: React.FC = () => {
     { day: 'Sun', start: 'Set', end: 'Set', time: '0h 0m', pay: '£0' },
   ];
 
-  const dateRange = getDateRangeForWeek();
-
   return (
-    <div className="max-w-md mx-auto py-4 px-4 font-['Golos_Text']">
+    <div className="max-w-md mx-auto py-4 px-4 font-['Golos_Text'] pb-24 bg-[#f9f9f9] min-h-screen">
       {/* Time Filters */}
       <TimeFilter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
       
@@ -71,37 +70,19 @@ const ShiftTracker: React.FC = () => {
         </ActionButton>
       </div>
 
-      {/* Shift Table with Week Range */}
+      {/* Shift Table */}
       <div className="mt-4">
-        <div className="mb-2 text-sm font-medium text-gray-600">{dateRange}</div>
         <ShiftTable 
           shifts={shifts} 
           totalTime="29h 1m" 
           totalPay="£290.17" 
         />
       </div>
+      
+      {/* Bottom Navigation */}
+      <BottomNavBar />
     </div>
   );
-};
-
-// Helper function to get the current week's date range
-const getDateRangeForWeek = (): string => {
-  const now = new Date();
-  const currentDay = now.getDay(); // 0 is Sunday, 1 is Monday, etc.
-  
-  // Adjust to start from Monday
-  const startDay = new Date(now);
-  startDay.setDate(now.getDate() - (currentDay === 0 ? 6 : currentDay - 1));
-  
-  const endDay = new Date(startDay);
-  endDay.setDate(startDay.getDate() + 6);
-  
-  // Format dates
-  const formatDate = (date: Date): string => {
-    return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })}`;
-  };
-  
-  return `${formatDate(startDay)} - ${formatDate(endDay)}`;
 };
 
 export default ShiftTracker;
