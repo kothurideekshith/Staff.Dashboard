@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
 
 type ShiftDay = {
   day: string;
@@ -36,7 +35,7 @@ const ColoredTime = ({ time, color }: { time: string; color: string }) => {
 
 const ShiftTable: React.FC<ShiftTableProps> = ({ shifts, totalTime, totalPay }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-4">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
       {/* Headers */}
       <div className="grid grid-cols-5 py-3 px-4 font-medium text-gray-800 text-sm">
         <div>Day</div>
@@ -60,9 +59,8 @@ const ShiftTable: React.FC<ShiftTableProps> = ({ shifts, totalTime, totalPay }) 
             <div className={shift.time === '0h 0m' ? 'text-gray-500' : ''}>
               {shift.time}
             </div>
-            <div className="flex items-center justify-between">
-              <span>{shift.pay}</span>
-              <ChevronRight size={16} className="text-gray-400" />
+            <div>
+              {shift.pay}
             </div>
           </div>
         ))}
