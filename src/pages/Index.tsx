@@ -1,3 +1,4 @@
+
 import ShiftTracker from '@/components/ShiftTracker';
 
 const Index = () => {

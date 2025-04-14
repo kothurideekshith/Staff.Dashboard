@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import StatCard from './StatCard';
 import ActionButton from './ActionButton';
 import ShiftTable from './ShiftTable';
-import { Clock, Plus, ArrowLeftRight } from 'lucide-react';
+import { Clock, Plus, ArrowLeftRight, CalendarClock, ArrowRight, MessageSquare } from 'lucide-react';
 
 const ShiftTracker: React.FC = () => {
   const [isClockIn, setIsClockIn] = useState(true);
@@ -30,27 +30,36 @@ const ShiftTracker: React.FC = () => {
 
       {/* Welcome & Clock In */}
       <div className="mt-4 bg-white rounded-xl p-4 shadow-sm">
-        <div className="flex justify-between items-center">
-          <div>
-            <h2 className="font-medium text-lg">Welcome Nick</h2>
-            <p className="text-sm">
-              Shift Starts in <span className="text-[#f3d25a] font-medium">5h 27mins</span>
-            </p>
-          </div>
-          <div className="w-32">
-            <ActionButton variant="green" className="w-full">
-              Clock In
-            </ActionButton>
-          </div>
+        <div>
+          <h2 className="font-medium text-lg">Welcome Nick</h2>
+          <p className="text-sm">
+            Shift Starts in <span className="text-[#f3d25a] font-medium">5h 27mins</span>
+          </p>
+        </div>
+        <div className="mt-3 space-y-2">
+          <ActionButton 
+            variant="yellow" 
+            className="w-full justify-center"
+            Icon={Clock}
+          >
+            Auto Clock - In
+          </ActionButton>
+          <ActionButton 
+            variant="green" 
+            className="w-full justify-center"
+            Icon={Clock}
+          >
+            Clock - In
+          </ActionButton>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-3 mt-4">
-        <ActionButton Icon={Plus} className="justify-center">
+        <ActionButton Icon={CalendarClock} className="justify-center">
           Add Availability
         </ActionButton>
-        <ActionButton className="justify-center">
+        <ActionButton Icon={ArrowLeftRight} className="justify-center">
           Requests
         </ActionButton>
       </div>

@@ -16,6 +16,24 @@ interface ShiftTableProps {
   totalPay: string;
 }
 
+// Helper function to color the time digits only
+const ColoredTime = ({ time, color }: { time: string; color: string }) => {
+  if (time === 'Set') return <span className="text-blue-500">{time}</span>;
+  
+  // Extract digits and non-digits
+  const timeArray = time.split(/(\d+:?\d*)/);
+  
+  return (
+    <span className="text-blue-500">
+      {timeArray.map((part, index) => (
+        part.match(/\d+:?\d*/) ? 
+          <span key={index} style={{ color }}>{part}</span> : 
+          <span key={index}>{part}</span>
+      ))}
+    </span>
+  );
+};
+
 const ShiftTable: React.FC<ShiftTableProps> = ({ shifts, totalTime, totalPay }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-4">
@@ -33,11 +51,11 @@ const ShiftTable: React.FC<ShiftTableProps> = ({ shifts, totalTime, totalPay }) 
         {shifts.map((shift, index) => (
           <div key={index} className="shift-row text-sm">
             <div className="font-medium">{shift.day}</div>
-            <div className={shift.start !== 'Set' ? 'text-blue-500' : 'text-blue-500'}>
-              {shift.start}
+            <div>
+              <ColoredTime time={shift.start} color="#4ac4ba" />
             </div>
-            <div className={shift.end !== 'Set' ? 'text-blue-500' : 'text-blue-500'}>
-              {shift.end}
+            <div>
+              <ColoredTime time={shift.end} color="#fa8c7b" />
             </div>
             <div className={shift.time === '0h 0m' ? 'text-gray-500' : ''}>
               {shift.time}

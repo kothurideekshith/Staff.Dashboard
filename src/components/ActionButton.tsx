@@ -38,7 +38,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         className
       )}
     >
-      {Icon && <Icon size={20} />}
+      {Icon && <Icon size={18} className="opacity-80" />}
       {children}
     </button>
   );
